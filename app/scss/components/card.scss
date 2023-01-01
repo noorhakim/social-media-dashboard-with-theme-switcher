@@ -1,5 +1,151 @@
-@use '../util' as *;
+@use "../util" as *;
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: rem(30);
+
+  @include breakpoint(medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoint(large) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 
 .card {
-  padding: rem(20);
+  background-color: var(--card-bg);
+  border-radius: 5px;
+  color: var(--text-color1);
+  flex: 1;
+  text-align: center;
+  padding: rem(30) rem(25) rem(25);
+  position: relative;
+  overflow: hidden;
+  transition: all .2s ease-out;
+
+  &:hover {
+    background-color: var(--card-bg-hover);
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    height: rem(5);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &--facebook {
+    &::before {
+      background: var(--facebook);
+    }
+  }
+
+  &--twitter {
+    &::before {
+      background: var(--twitter);
+    }
+  }
+
+  &--instagram {
+    &::before {
+      background: linear-gradient(to right, var(--instagram-start), var(--instagram-end));
+    }
+  }
+
+  &--youtube {
+    &::before {
+      background: var(--youtube);
+    }    
+  }
+
+  &__platform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: rem(28);
+  }
+
+  &__subtitle {
+    font-size: rem(14);
+    font-weight: 700;
+  }
+
+  &__icon {
+    margin-right: rem(8);
+    height: rem(20);
+  }
+
+  &__username {
+    font-size: rem(12);
+    font-weight: 700;
+  }
+
+  &__followers {
+    margin-bottom: rem(25);
+  }
+
+  &__count {
+    color: var(--text-color2);
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 4px;
+
+    &--lg {
+      font-size: rem(56);
+    }
+
+    &--sm {
+      font-size: rem(32);
+    }
+  }
+
+  &__label {
+    color: var(--dark-text1);
+    font-size: rem(12);
+    font-weight: 400;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
+
+  &__change {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: rem(12);
+    font-weight: 700;
+
+    &--up {
+      color: var(--limegreen);
+
+      &::before {
+        content: "";
+        background-image: url("../../../images/icon-up.svg");
+        width: 8px;
+        height: 4px;
+        margin-right: rem(6);
+      }
+    }
+
+    &--down {
+      color: var(--brightred);
+
+      &::before {
+        content: "";
+        background-image: url("../../../images/icon-down.svg");
+        width: 8px;
+        height: 4px;
+        margin-right: rem(4);
+      }
+    }
+  }
+}
+
+.card.card-grid {
+  padding-top: rem(25);
 }

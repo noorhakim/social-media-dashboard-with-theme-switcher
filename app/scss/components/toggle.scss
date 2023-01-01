@@ -1,10 +1,76 @@
 @use '../util' as *;
 
+// https://codepen.io/SaraSoueidan/pen/jpBbrq?editors=1000
+
 .toggle {
-  &__button {
-    width: rem(16);
-    height: rem(16);
-    border-radius: 50%;
-    background-color: var(--toggle);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0 rem(14);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  transition: all .1s ease-out;
+
+  &:hover {
+    label {
+      color: var(--toggle-text-hover);
+    }
+    
+    input[type="radio"] {
+      cursor: pointer;
+    }
   }
+
+  label {
+    color: var(--toggle-text);
+    font-size: rem(14);
+    font-weight: 700;
+  }
+
+  &__wrapper {
+    height: rem(24);
+    width: rem(48);
+    position: relative;
+  }
+
+  input[type="radio"] {
+    opacity: 0;
+    margin: 0 -2px;
+    width: rem(24);
+    height: rem(24);
+    position: relative;
+    z-index: 1;
+
+    &:focus ~ .toggle__button {
+      transform: scale(1.15);
+    }
+  }
+
+  &__background {
+    display: block;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    border-radius: rem(12);
+    background: var(--toggle-bg);
+    transition: all .2s ease-out;
+  }
+
+  &__button {
+    position: absolute;
+    top: rem(3);
+    left: rem(3);
+    width: rem(18);
+    height: rem(18);
+    border-radius: 50%;
+    background-color: var(--toggle-button);
+    transition: all .4s ease-out;
+  }
+
+  #light:checked ~ .toggle__button {
+    left: calc(100% - rem(21));
+  }
+
 }
